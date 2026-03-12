@@ -10,11 +10,11 @@ const createUsuario = async (data: Partial<IUsuario>): Promise<IUsuarioModel> =>
 };
 
 const getUsuario = async (usuarioId: string): Promise<IUsuarioModel | null> => {
-    return await Usuario.findById(usuarioId).populate('organizacion');
+    return await Usuario.findById(usuarioId);
 };
 
 const getAllUsuarios = async (): Promise<IUsuarioModel[]> => {
-    return await Usuario.find().populate('organizacion');
+    return await Usuario.find();
 };
 
 const updateUsuario = async (usuarioId: string, data: Partial<IUsuario>): Promise<IUsuarioModel | null> => {

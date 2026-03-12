@@ -1,5 +1,5 @@
 import express from 'express';
-import controller from '../controllers/Usuario';
+import controller from '../controllers/Libreria';
 import { Schemas, ValidateJoi } from '../middleware/Joi';
 
 const router = express.Router();
@@ -7,12 +7,12 @@ const router = express.Router();
 /**
  * @openapi
  * tags:
- *   - name: Usuarios
- *     description: Endpoints CRUD de usuarios
+ *   - name: Librerias
+ *     description: Endpoints para gestionar librerías
  *
  * components:
  *   schemas:
- *     Usuario:
+ *     Libreria:
  *       type: object
  *       properties:
  *         _id:
@@ -21,132 +21,125 @@ const router = express.Router();
  *           example: "65f1c2a1b2c3d4e5f6789012"
  *         name:
  *           type: string
- *           example: "Judit"
- *         email:
+ *           example: "Biblioteca Central"
+ *         address:
  *           type: string
- *           example: "judit@gmail.com"
- *         password:
- *           type: string
- *           example: "password123"
- *     UsuarioCreateUpdate:
+ *           example: "Calle Principal 123"
+ *     LibreriaCreateUpdate:
  *       type: object
  *       required:
  *         - name
- *         - email
- *         - password
+ *         - address
  *       properties:
  *         name:
  *           type: string
- *           example: "Judit"
- *         email:
+ *           example: "Biblioteca Central"
+ *         address:
  *           type: string
- *           example: "judit@gmail.com"
- *         password:
- *           type: string
- *           example: "password123"
+ *           example: "Calle Principal 123"
  */
 
 /**
  * @openapi
- * /usuarios:
+ * /librerias:
  *   post:
- *     summary: Crea un usuario
- *     tags: [Usuarios]
+ *     summary: Crea una librería
+ *     tags: [Librerias]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UsuarioCreateUpdate'
+ *             $ref: '#/components/schemas/LibreriaCreateUpdate'
  *     responses:
  *       201:
  *         description: Creado
  *       422:
- *         description: Validación fallida (Joi)
+ *         description: Validación fallida
  */
-router.post('/', ValidateJoi(Schemas.usuario.create), controller.createUsuario);
+router.post('/', ValidateJoi(Schemas.libreria.create), controller.createLibreria);
 
 /**
  * @openapi
- * /usuarios/{usuarioId}:
+ * /librerias/{libreriaId}:
  *   get:
- *     summary: Obtiene un usuario por ID
- *     tags: [Usuarios]
+ *     summary: Obtiene una librería por ID
+ *     tags: [Librerias]
  *     parameters:
  *       - in: path
- *         name: usuarioId
+ *         name: libreriaId
  *         required: true
  *         schema:
  *           type: string
- *         description: ObjectId del usuario
+ *         description: ObjectId de la librería
  *     responses:
  *       200:
  *         description: OK
  *       404:
  *         description: No encontrado
  */
-router.get('/:usuarioId', controller.readUsuario);
+router.get('/:libreriaId', controller.getLibreria);
 
 /**
  * @openapi
- * /usuarios:
+ * /librerias:
  *   get:
- *     summary: Lista todos los usuarios
- *     tags: [Usuarios]
+ *     summary: Lista todas las librerías
+ *     tags: [Librerias]
  *     responses:
  *       200:
  *         description: OK
  */
-router.get('/', controller.readAll);
+router.get('/', controller.getAllLibrerias);
 
 /**
  * @openapi
- * /usuarios/{usuarioId}:
+ * /librerias/{libreriaId}:
  *   put:
- *     summary: Actualiza un usuario por ID
- *     tags: [Usuarios]
+ *     summary: Actualiza una librería por ID
+ *     tags: [Librerias]
  *     parameters:
  *       - in: path
- *         name: usuarioId
+ *         name: libreriaId
  *         required: true
  *         schema:
  *           type: string
- *         description: ObjectId del usuario
+ *         description: ObjectId de la librería
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UsuarioCreateUpdate'
+ *             $ref: '#/components/schemas/LibreriaCreateUpdate'
  *     responses:
  *       201:
  *         description: Actualizado
  *       404:
  *         description: No encontrado
  *       422:
- *         description: Validación fallida (Joi)
+ *         description: Validación fallida
  */
-router.put('/:usuarioId', ValidateJoi(Schemas.usuario.update), controller.updateUsuario);
+router.put('/:libreriaId', ValidateJoi(Schemas.libreria.update), controller.updateLibreria);
 
 /**
  * @openapi
- * /usuarios/{usuarioId}:
+ * /librerias/{libreriaId}:
  *   delete:
- *     summary: Elimina un usuario por ID
- *     tags: [Usuarios]
+ *     summary: Elimina una librería por ID
+ *     tags: [Librerias]
  *     parameters:
  *       - in: path
- *         name: usuarioId
+ *         name: libreriaId
  *         required: true
  *         schema:
  *           type: string
- *         description: ObjectId del usuario
+ *         description: ObjectId de la librería
  *     responses:
- *       200:
+ *       201:
  *         description: OK
  *       404:
  *         description: No encontrado
  */
-router.delete('/:usuarioId', controller.deleteUsuario);
+router.delete('/:libreriaId', controller.deleteLibreria);
 
 export default router;
