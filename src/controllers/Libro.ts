@@ -15,7 +15,11 @@ const createLibro = async (req: Request, res: Response, next: NextFunction) => {
 const getLibro = async (req: Request, res: Response, next: NextFunction) => {
     const libroId = req.params.libroId;
     try {
+<<<<<<< HEAD
         const libro = await LibroService.getLibro(libroId);
+=======
+        const libro = await Libro.findById(libroId).populate('author owner libreria');
+>>>>>>> develop/models
         return libro ? res.status(200).json(libro) : res.status(404).json({ message: 'not found' });
     } catch (error) {
         return res.status(500).json({ error });
@@ -24,7 +28,11 @@ const getLibro = async (req: Request, res: Response, next: NextFunction) => {
 
 const getAllLibros = async (req: Request, res: Response, next: NextFunction) => {
     try {
+<<<<<<< HEAD
         const libros = await LibroService.getAllLibros();
+=======
+        const libros = await Libro.find().populate('author owner libreria');
+>>>>>>> develop/models
         return res.status(200).json(libros);
     } catch (error) {
         return res.status(500).json({ error });
@@ -55,6 +63,7 @@ const deleteLibro = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
+<<<<<<< HEAD
 const restoreLibro = async (req: Request, res: Response, next: NextFunction) => {
     const libroId = req.params.libroId;
     try {   
@@ -65,3 +74,6 @@ const restoreLibro = async (req: Request, res: Response, next: NextFunction) => 
     }
 };
 export default { createLibro, getLibro, getAllLibros, updateLibro, deleteLibro, restoreLibro };
+=======
+export default { createLibro, getLibro, getAllLibros, updateLibro, deleteLibro };
+>>>>>>> develop/models
