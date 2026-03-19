@@ -69,8 +69,8 @@ export const Schemas = {
             IsDeleted: Joi.boolean().optional()
         }),
         update: Joi.object<ILibro>({
-            isbn: Joi.string().required(),
-            title: Joi.string().required(),
+            isbn: Joi.string().optional(),
+            title: Joi.string().optional(),
             authors: Joi.array().items(Joi.string().optional()),
             IsDeleted: Joi.boolean().optional()
         })

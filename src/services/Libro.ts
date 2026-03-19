@@ -31,7 +31,7 @@ export async function getAllLibros_NOT_Deleted(): Promise<ILibro[] | []> {
 }
 
 export async function updateLibro(id: string, data: ILibro): Promise<ILibro | null> {
-    return await Libro.findByIdAndUpdate(id, { title: data.title, authors: data.authors, isbn: data.isbn });
+    return await Libro.findByIdAndUpdate(id, data, { new: true });
 }
 
 export async function deleteLibro(id: string): Promise<ILibro | null> {

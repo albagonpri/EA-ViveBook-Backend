@@ -23,7 +23,7 @@ const router = express.Router();
  *           type: string
  *           description: Nombre del autor
  *           example: "Robert C. Martin"
- *         isDeleted:
+ *         IsDeleted:
  *           type: boolean
  *           description: Indica si el autor ha sido eliminado lógicamente
  *           example: false
@@ -37,7 +37,7 @@ const router = express.Router();
  *           type: string
  *           description: Nombre del autor
  *           example: "Robert C. Martin"
- *         isDeleted:
+ *         IsDeleted:
  *           type: boolean
  *           description: Indica si el autor ha sido eliminado lógicamente
  *           example: false

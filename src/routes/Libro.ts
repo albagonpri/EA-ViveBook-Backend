@@ -29,12 +29,13 @@ const router = express.Router();
  *           example: "Clean Code"
  *         authors:
  *           type: array
- *           description: Lista de autores del libro
+ *           description: Lista de IDs de autores asociados al libro
  *           items:
  *             type: string
+ *             example: "65f1c2a1b2c3d4e5f6789013"
  *           example:
- *             - "Robert C. Martin"
- *         isDeleted:
+ *             - "65f1c2a1b2c3d4e5f6789013"
+ *         IsDeleted:
  *           type: boolean
  *           description: Indica si el libro ha sido eliminado lógicamente
  *           example: false
@@ -51,16 +52,18 @@ const router = express.Router();
  *           example: "Clean Code"
  *         authors:
  *           type: array
- *           description: Lista de autores del libro
+ *           description: Lista de IDs de autores asociados al libro
  *           items:
  *             type: string
+ *             example: "65f1c2a1b2c3d4e5f6789013"
+ *             pattern: '^[0-9a-fA-F]{24}$'
  *           example:
- *             - "Robert C. Martin"
+ *             - "65f1c2a1b2c3d4e5f6789013"
  *         isbn:
  *           type: string
  *           description: ISBN del libro
  *           example: "978-0132350884"
- *         isDeleted:
+ *         IsDeleted:
  *           type: boolean
  *           description: Indica si el libro ha sido eliminado lógicamente
  *           example: false
