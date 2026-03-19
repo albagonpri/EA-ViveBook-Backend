@@ -18,12 +18,12 @@ export async function createLibroByIsbn(isbn: string): Promise<ILibro | null> {
     return await libro.save();
 }
 
-export async function readLibro(id: string): Promise<ILibro | null> {
-    return await Libro.findById(id);
+export async function getLibro(id: string): Promise<ILibro | null> {
+    return await Libro.findById(id).populate('authors', 'fullName');
 }
 
-export async function readLibros(id: string): Promise<ILibro[] | []> {
-    return await Libro.find();
+export async function getAllLibros(): Promise<ILibro[] | []> {
+    return await Libro.find().populate('authors', 'fullName');
 }
 
 export async function updateLibro(id: string, data: ILibro): Promise<ILibro | null> {
@@ -33,3 +33,5 @@ export async function updateLibro(id: string, data: ILibro): Promise<ILibro | nu
 export async function deleteLibro(id: string): Promise<ILibro | null> {
     return await Libro.findByIdAndDelete(id);
 }
+
+export default { createLibro, createLibroByIsbn, getLibro, getAllLibros, updateLibro, deleteLibro };
