@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import Libro, { ILibroModel, ILibro } from '../models/Libro';
-import { callGoogleApi } from './Util';
+import { callOpenLibraryBookApi } from './Util';
 import Logging from '../library/Logging';
 import Autor from './Autor';
 
@@ -12,7 +12,7 @@ export async function createLibro(data: Partial<ILibro>): Promise<ILibro | null>
     return await libro.save();
 }
 export async function createLibroByIsbn(isbn: string): Promise<ILibro | null> {
-    let data: ILibro = await callGoogleApi(isbn);
+    let data: ILibro = await callOpenLibraryBookApi(isbn);
     //Logging.info(`Libro found: ${JSON.stringify(data)}`);
     let autores = [];
     // Busca el autor
@@ -51,10 +51,8 @@ export async function deleteLibro(id: string): Promise<ILibro | null> {
 }
 
 export async function restoreLibro(libroId: string): Promise<ILibro | null> {
-    return await Libro.findByIdAndUpdate(libroId,
-        { IsDeleted: false }, 
-        { new: true }); 
-};
+    return await Libro.findByIdAndUpdate(libroId, { IsDeleted: false }, { new: true });
+}
 
 export async function getLibroByIsbn(isbn: string): Promise<ILibro | null> {
     return await Libro.findOne({ isbn: isbn });
