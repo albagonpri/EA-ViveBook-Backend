@@ -13,6 +13,7 @@ import chatRoutes from './routes/Chat';
 import mensajeRoutes from './routes/Mensaje';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './swagger';
+import planificacioRoutes from './routes/Planificacio'
 
 const router = express();
 
@@ -55,6 +56,7 @@ const StartServer = () => {
     router.use('/eventos', eventoRoutes);
     router.use('/chats', chatRoutes);
     router.use('/mensajes', mensajeRoutes);
+    router.use('/planificacions', planificacioRoutes)
 
     /** Healthcheck */
     router.get('/ping', (req, res, next) => res.status(200).json({ hello: 'world' }));
